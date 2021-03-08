@@ -1,22 +1,42 @@
+body{
+  background-color:plum;
+}
+
 .conteneur-titre{
-  border: 1px solid black;
+  border: 2px solid blue;
   width: 100%;
   background-color: aquamarine;
 }
 
+
 .conteneur-flex{
   display: flex;
-  flex-flow: column;
-  width: 20%;
+  flex-flow: wrap;
   align-items:center;
+  justify-content: space-around;
+  align-content: space-around;
+  width: 100%;
+  border: 2px solid blue;
+  box-sizing: border-box;
+  background-color: aquamarine;
 }
 
 .colonne{
   flex-direction: column;
 }
 
+.ligne{
+  flex-direction: row;
+}
+
 .element-flex{
   flex: 1 1 50px;
+  width: 40%;
+  height: 40%;
+  
+  box-sizing: border-box;
+  margin: 10px;
+  
 }
 
 h1{
@@ -27,6 +47,9 @@ h1{
 h2{
   color:darkblue;
   text-align: center;
+}
+h3{
+  color:darkblue;
 }
 p{
   color:darkred;
