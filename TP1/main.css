@@ -1,9 +1,32 @@
+.conteneur-titre{
+  border: 1px solid black;
+  width: 100%;
+  background-color: aquamarine;
+}
+
+.conteneur-flex{
+  display: flex;
+  flex-flow: column;
+  width: 20%;
+  align-items:center;
+}
+
+.colonne{
+  flex-direction: column;
+}
+
+.element-flex{
+  flex: 1 1 50px;
+}
+
 h1{
     font-size: 50px;
-    color: pink;
+    color: blue;
+    text-align: center;
   }
 h2{
-  color:pink;
+  color:darkblue;
+  text-align: center;
 }
 p{
   color:darkred;
