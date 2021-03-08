@@ -1,7 +1,10 @@
 h1{
     font-size: 50px;
-    color: blue;
+    color: pink;
   }
+h2{
+  color:pink;
+}
 p{
-  color:darkred
+  color:darkred;
 }
