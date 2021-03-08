@@ -29,6 +29,10 @@ body{
   flex-direction: row;
 }
 
+#current{
+  color: yellow
+}
+
 .element-flex{
   flex: 1 1 50px;
   width: 40%;
