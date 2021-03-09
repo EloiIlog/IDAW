@@ -3,15 +3,13 @@ body{
 }
 
 .conteneur-titre{
-  flex: 1 1 50px;
   border: 2px solid blue;
   width: 100%;
-  background-color: aquamarine;
+  background-color: aquamarine;;
 }
 
 .base{
   width: 100%;
-  background-color:plum;
 }
 
 .conteneur-flex{
@@ -22,7 +20,7 @@ body{
   align-content: space-around;
   width: 100%;
   box-sizing: border-box;
-  background-color:plum;
+  background-color: plum;
 }
 
 .colonne{
@@ -32,7 +30,8 @@ body{
 
 .ligne{
   flex-direction: row;
-  /*background-color: aquamarine;*/
+  background-color: aquamarine;
+  border: 2px solid blue;
 }
 
 #current{
@@ -62,4 +61,9 @@ h3{
 }
 p{
   color:darkred;
+}
+footer{
+  width: 100%;
+  background-color: aquamarine;
+  color: white;
 }
