@@ -1,15 +1,10 @@
 <?php require_once('template_header.php');
 ?>
-  <body >
     <div class="conteneur-flex">
-      <div class="conteneur-titre">
-        <h1 >Mon Site Professionel</h1>
-      </div>
-            <div class="conteneur-flex ligne">
-              <div class="element-flex"><a id="current" href="../themePerso/index.html" >Accueil</a></div>
-              <div class="element-flex"><a href="../themePerso/projet.html">Mes projet</a></div>
-              <div class="element-flex"><a href="../themePerso/cv.html">Mon CV</a></div>
-            </div>
+    <?php require_once('template_titre.php');
+?>
+      <?php require_once('menu.php');
+?>
             
             <h3>Description personnel:</h3>
             <p>
