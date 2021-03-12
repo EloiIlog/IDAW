@@ -4,8 +4,8 @@ function renderMenuToHTML($currentPage){
     echo "<div class='conteneur-flex ligne'>";
     $mymenu = array(
         'index'=>'Acceuil',
-        'cv' =>  'Cv' ,
         'projet' => 'Mes Projets',
+        'cv' =>  'Cv' ,
         'info_technique' => 'Contact',
     );
     foreach ($mymenu as $pageId => $pageParameters){
