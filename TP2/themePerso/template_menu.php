@@ -1,18 +1,26 @@
 
-
 <?php 
-echo "<div class='conteneur-flex ligne'>"
 function renderMenuToHTML($currentPage){
+    echo "<div class='conteneur-flex ligne'>";
     $mymenu = array(
-        'index'=>array('Acceuil'),
-        'cv' => array( 'Cv' ),
-        'projets' => array('Mes Projets'),
-        'technique' => array('Contact')
+        'index'=>'Acceuil',
+        'cv' =>  'Cv' ,
+        'projet' => 'Mes Projets',
+        'info_technique' => 'Contact',
     );
     foreach ($mymenu as $pageId => $pageParameters){
-        echo "<div class='element-flex'><a href='index.php'>Accueil</a></div>";
-        echo "<div class='element-flex'><a href='cv.php'>Mon CV</a></div>";
-        echo "<div class='element-flex'><a href='projet.php'>Mes projets</a></div>";
-        echo "<div class='element-flex'><a href='info_technique.php'>Contact</a></div>";
+        echo "<div class='element-flex'>";
+        if ($pageId==$currentPage){
+            echo "<a href='$pageId.php' id=current>";
+            echo $pageParameters;
+            echo "</a></div>";
+        }
+        else {
+           echo "<a href='$pageId.php'>";
+           echo $pageParameters;
+           echo "</a></div>";
+        }
     }
+   echo "</div>";
 }
+?>

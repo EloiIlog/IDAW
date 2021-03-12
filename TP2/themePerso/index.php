@@ -3,8 +3,9 @@
     <div class="conteneur-flex">
     <?php require_once('template_titre.php');
 ?>
-      <?php require_once('menu.php');
-?>
+      <?php require_once('template_menu.php');
+    renderMenuToHTML('index');
+    ?>
             
             <h3>Description personnel:</h3>
             <p>
