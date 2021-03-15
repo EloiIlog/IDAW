@@ -16,5 +16,3 @@
               <img src="EloiPro.jpg" alt="La plus belle photo de moi">
               
     </div>
-    <?php require_once('template_footer.php');
-?>

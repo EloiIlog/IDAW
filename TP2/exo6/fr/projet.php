@@ -1,5 +1,4 @@
-<?php require_once('template_header.php');
-?>
+
     <div class="conteneur-flex">
     
         <div>
@@ -8,5 +7,3 @@
           <video src="Mon élevage d'alpaga.mp4" controls width=50%>Mes alpagas de collection</video>
         </div>
     </div>
-    <?php require_once('template_footer.php');
-?>
