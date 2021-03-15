@@ -1,3 +1,8 @@
 body{
     background-color: blue;
 }
+
+.gros{
+    background-color: yellow;
+    border: 1px
+}

@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Coucou la mif</title>
-    <?php if(isset($_COOKIE['cookie_style']))
-    $a=$_COOKIE['cookie_style'];
-    echo "<link rel='stylesheet' href='$a.css'>";
-    ?>
-    <meta charset="UTF-8">
+<h1>page Connection</h1>
     
-  </head>
-  
-<body>
     <?php
         // on simule une base de données
         $users = array(
@@ -36,13 +25,13 @@
         if(!$successfullyLogged) {
         echo $errorText;
         } else {
-        echo "<h1>Bienvenu ".$login."</h1>";
+        //echo "<h1>Bienvenu ".$login."</h1>";
+        $_SESSION['login'] = $login;
         }
-    ?>
-    <h1>Page de Eloi</h1>
-    <?php if(isset($_COOKIE['cookie_style']))
+        /*echo $_SESSION['login'];
+         if(isset($_COOKIE['cookie_style']))
     $a=$_COOKIE['cookie_style'];
     echo $a;
-    ?>
-</body>
+    ?>*/
+
 
