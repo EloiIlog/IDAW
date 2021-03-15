@@ -3,7 +3,7 @@
 function renderMenuToHTML($currentPage,$currentLang){
     echo "<div class='conteneur-flex ligne'>";
     $mymenu = array(
-        'accueil'=>array('Acceuil','Welcome'),
+        'accueil'=>array('Accueil','Welcome'),
         'projet' => array('Mes Projets','My Projects'),
         'cv' =>  array('CV','CV') ,
         'info_technique' => array('Information','Contact'),
