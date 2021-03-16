@@ -1,5 +1,3 @@
-<h1>page Connection</h1>
-    
     <?php
         // on simule une base de données
         $users = array(
@@ -31,7 +29,7 @@
         /*echo $_SESSION['login'];
          if(isset($_COOKIE['cookie_style']))
     $a=$_COOKIE['cookie_style'];
-    echo $a;
-    ?>*/
+    echo $a;*/
+    ?>
 
 
