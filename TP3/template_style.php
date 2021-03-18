@@ -9,7 +9,6 @@
 <?php
 if(isset($_GET['css'])){
 $content = $_GET['css']; // Contenu du cookie
-echo $content."**";
 setcookie("cookie_style", $content);
 }
 ?>
