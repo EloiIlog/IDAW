@@ -1,3 +1,6 @@
+<?php require_once("template_header.php");
+require_once("template_style.php");?>
+
 <form id="login_form" action="index.php" method="POST">
 <table>
 <tr>

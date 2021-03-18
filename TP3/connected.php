@@ -1,4 +1,6 @@
     <?php
+    require_once("template_header.php");
+    require_once("template_style.php");
         // on simule une base de données
         //$users = array(
         // login => password
@@ -20,8 +22,8 @@
             if($conn->connect_error){
                 die('Erreur : ' .$conn->connect_error);
             }
-            echo 'Connexion database reussi';
-            echo "<br>";
+            /*echo 'Connexion database reussi';
+            echo "<br>";*/
 
             $sql = $conn->query("SELECT * from login");
         
