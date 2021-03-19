@@ -6,9 +6,3 @@
 <input type="submit" value="Appliquer" />
 </form>
 
-<?php
-if(isset($_GET['css'])){
-$content = $_GET['css']; // Contenu du cookie
-setcookie("cookie_style", $content);
-}
-?>

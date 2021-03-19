@@ -41,12 +41,12 @@
                 $login = $tryLogin;
                 } 
                 else{
-                $errorText = "Erreur de login/password";
+                $errorText = "Erreur de login/password veuillez réessayer<br>";
                 }
             }
         } 
         else
-        $errorText = "Merci d'utiliser le formulaire de login";
+        $errorText = "Merci d'utiliser le formulaire de Connection<br>";
         
         if(!$successfullyLogged) {
         echo $errorText;

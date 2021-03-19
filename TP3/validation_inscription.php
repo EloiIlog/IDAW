@@ -16,9 +16,14 @@ require_once("template_style.php");?>
             }
             /*echo 'Connexion database reussi';
             echo "<br>";*/
-            $sql = $conn->query("INSERT INTO login ('Login','Password','Pseudo')
-            VALUES ($_POST['NewLogin'],
-             '$_POST['NewPasseword']', '$_POST['NewPseudo']')");
+            $a=$_POST['NewLogin'];
+            $b=$_POST['NewPassword'];
+            $c=$_POST['NewPseudo'];
+            echo $a;
+            $sql = $conn->query("INSERT INTO login (Login,Password,Pseudo)
+            VALUES ('$a','$b','$c')");
             ?>
-<h2> Vous avez bie été inscrit</h2>
+<h2> Vous avez bien été inscrit</h2>
 <p>Votre login est <?php echo $_POST['NewLogin']?>
+<a href=index.php>Retour à l'accueil</a>
+<a href=login.php>Connexion</a>
