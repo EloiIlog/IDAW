@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Coucou la mif</title>
+    <title>Coucou Ewen</title>
     <?php
     $a="style1";
     if(isset($_GET['css'])){
