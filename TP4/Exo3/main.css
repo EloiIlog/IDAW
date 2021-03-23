@@ -67,3 +67,8 @@ footer{
   background-color: aquamarine;
   color: white;
 }
+
+table{
+  border: 2px solid black;
+  width: 100%;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SitePro Eloi Guisnet </title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body >
+    <div class="conteneur-flex">
+      <div class="conteneur-titre">
+        <h1 >Mon Site Professionel</h1>
+      </div>
+            <div class="conteneur-flex ligne">
+              <div class="element-flex"><a href="../Exo3/index.html" >Accueil</a></div>
+              <div class="element-flex"><a href="../Exo3/projet.html">Mes projet</a></div>
+              <div class="element-flex"><a href="../Exo3/cv.html">Mon CV</a></div>
+              <div class="element-flex"><a id="current" href="../Exo3/jscrud.html">CRUD</a></div>
+            </div>
+
+            <div class="conteneur-flex">
+                <table>
+                    <tr>
+                      <td>Nom</td>
+                      <td>Prénom</td>
+                      <td>Date de naissance</td>
+                      <td>Remarque</td>
+                    </tr>
+                    <tr>
+                      <td>Giraud</td>
+                      <td>Pierre</td>
+                      <td>28</td>
+                      <td>pierre.giraud@edhec.com</td>
+                    </tr>
+                    <tr>
+                      <td>Joly</td>
+                      <td>Pauline</td>
+                      <td>27</td>
+                      <td>pjl@gmail.com</td>
+                    </tr>
+                  </table>
+
+                  <p></p>
+            </div>
+
+            <div class="conteneur-flex">
+
+            <form onsubmit="onFormSubmit();" autocomplete="off">
+    <tr>
+        <th>Nom</th>
+        <br>
+        <td><input type="text" name="nom"></td>
+        <br>
+    </tr>
+    <tr>
+        <th>Prénom</th>
+        <br>
+        <td><input type="text" name="prenom"></td>
+        <br>
+    </tr>
+    <tr>
+        <th>Date de naissance</th>
+        <br>
+        <td><input type="date" name="date"></td>
+        <br>
+    </tr>
+    <tr>
+        <th>Remarque</th>
+        <br>
+        <td><input type="text" name="remarque"></td>
+        <br>
+    </tr>
+    <tr>
+        <th></th>
+        <td><input type="submit" value="Submit" /></td>
+    </tr>
+</div>
+
+
+    </form>
+    <script>
+    function onFormSubmit() {
+    // prevent the form to be sent to the server
+    event.preventDefault();
+    }
+    </script>
