@@ -56,7 +56,7 @@
     <tr>
         <th>Prénom</th>
         <br>
-        <td><input type="text" id='idnom' name="prenom"></td>
+        <td><input type="text" id='idprenom' name="prenom"></td>
         <br>
     </tr>
     <tr>
@@ -75,13 +75,14 @@
         <th></th>
         <td><input type="submit" value="Submit" /></td>
     </tr>
-</div>
-  </form>
+  </form></div>
     <script>
     function onFormSubmit() {
     event.preventDefault();
-    $("#table-content").append("<tr> <td>" + $("#idnom").val() + "</td> <td>" +
+    $("#table_content").append("<tr> <td>" + $("#idnom").val() + "</td> <td>" +
          $("#idprenom").val() + "</td>  <td>" + $("#iddate").val() + "</td>  <td>" + $("#idremarque").val()+ "</td> </tr>") ;
             /*+ "</td> <td>" + resultat + "</td> </tr>")*/
     }
     </script>
+</body>
+</html>
