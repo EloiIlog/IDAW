@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SitePro Eloi Guisnet </title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css">
+    <script src = "https://code.jquery.com/jquery-3.6.0.js" ></script>
+  </head>
+  <body >
+    <div class="conteneur-flex">
+      <div class="conteneur-titre">
+        <h1 >Mon Site Professionel</h1>
+      </div>
+            <div class="conteneur-flex ligne">
+              <div class="element-flex"><a href="../Exo3/index.html" >Accueil</a></div>
+              <div class="element-flex"><a href="../Exo3/projet.html">Mes projet</a></div>
+              <div class="element-flex"><a href="../Exo3/cv.html">Mon CV</a></div>
+              <div class="element-flex"><a id="current" href="../Exo3/jscrud.html">CRUD</a></div>
+            </div>
+
+            <div class="conteneur-flex">
+                <table>
+                <tr>
+                    <td>Nom</td>
+                    <td>Prénom</td>
+                    <td>Date de naissance</td>
+                    <td>Remarque</td>
+                  </tr></table>
+                <table id='table_content'>
+                    <tr>
+                      <td>Giraud</td>
+                      <td>Pierre</td>
+                      <td>28/10/2000</td>
+                      <td>Sympas</td>
+                    </tr>
+                    <tr>
+                      <td>Joly</td>
+                      <td>Pauline</td>
+                      <td>27/08/1996</td>
+                      <td>Grand et con</td>
+                    </tr>
+                  </table>
+
+                  <p></p>
+            </div>
+
+            <div class="conteneur-flex">
+
+            <form onsubmit="onFormSubmit();" autocomplete="off">
+    <tr>
+        <th>Nom</th>
+        <br>
+        <td><input type="text" id='idnom' name="nom"></td>
+        <br>
+    </tr>
+    <tr>
+        <th>Prénom</th>
+        <br>
+        <td><input type="text" id='idprenom' name="prenom"></td>
+        <br>
+    </tr>
+    <tr>
+        <th>Date de naissance</th>
+        <br>
+        <td><input type="date" id='iddate' name="date"></td>
+        <br>
+    </tr>
+    <tr>
+        <th>Remarque</th>
+        <br>
+        <td><input type="text" id='idremarque' name="remarque"></td>
+        <br>
+    </tr>
+    <tr>
+        <th></th>
+        <td><input type="submit" value="Submit" /></td>
+    </tr>
+  </form></div>
+    <script>
+    function onFormSubmit() {
+    event.preventDefault();
+    $("#table_content").append("<tr> <td>" + $("#idnom").val() + "</td> <td>" +
+         $("#idprenom").val() + "</td>  <td>" + $("#iddate").val() + "</td>  <td>" + $("#idremarque").val()+ "</td> </tr>") ;
+            /*+ "</td> <td>" + resultat + "</td> </tr>")*/
+    }
+    </script>
+</body>
+</html>
