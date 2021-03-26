@@ -80,10 +80,12 @@
 
 <script>
 let idligne=0;
+let boedit=false;
+let currentligne=0;
+
 function onFormSubmit() {
 // prevent the form to be sent to the server
 event.preventDefault();
-idligne+=1;
 let nom = $("#inputNom").val();
 let prenom = $("#inputPrenom").val();
 let date = $("#inputDate").val();
@@ -91,29 +93,42 @@ let remarques = $("#inputRemarques").val();
 let check=$("#inputCheck").prop("checked");
 //$("check").val();
 if (nom!=''){
-    idligne+=1;
-    $("#erreur").empty()
+    if (boedit==false){
+        idligne+=1;
+        $("#erreur").empty()
     $("#studentsTableBody").append('<tr id='+idligne+'><td>'+nom+'</td><td>'+prenom+'<td><td>'+date+'<td><td>'+check+
     '<td><td>'+remarques+
     '</td><td><button onclick=edit('+idligne+')>edit</button><button onclick=remove('+idligne+')>remove</button></td></tr>') ;
-}
-else{
-    $("#erreur").empty()
-    $("#erreur").append("Veuillez renseigner votre nom");
-}
-}
-function edit(a){
-    $("#erreur").append('Vous êtes entrain de modifier la ligne '+a);
-    if (nom!=''){
-        /*$("#addStudentForm").html('<form id="addStudentForm" action="" onsubmit="edit();">')*/
+    }
+
+    
+    else{
+    $('#'+currentligne).empty();
     $("#erreur").empty();
-    $("#studentsTableBody").append('<tr id='+a+'><td>'+nom+'</td><td>'+prenom+'<td><td>'+date+'<td><td>'+check+
+    $('<tr id='+idligne+'><td>'+nom+'</td><td>'+prenom+'<td><td>'+date+'<td><td>'+check+
     '<td><td>'+remarques+
-    '</td><td><button onclick=edit('+a+')>edit</button><button onclick=remove('+a+')>remove</button></td></tr>') ;
+    '</td><td><button onclick=edit('+idligne+')>edit</button><button onclick=remove('
+    +idligne+')>remove</button></td></tr>').appendTo('#'+currentligne) ;
+    boedit=false;
     }
 }
+}
+
+function edit(a){
+    $("#erreur").append('Vous êtes entrain de modifier la ligne '+a);
+    currentligne=a;
+    boedit=true;
+    /*if (nom!=''){
+        /*$("#addStudentForm").html('<form id="addStudentForm" action="" onsubmit="edit();">')
+    $("#erreur").empty();
+    $('#'+a).empty();
+    $('<tr id='+a+'><td>'+nom+'</td><td>'+prenom+'<td><td>'+date+'<td><td>'+check+
+    '<td><td>'+remarques+
+    '</td><td><button onclick=edit('+a+')>edit</button><button onclick=remove('+a+')>remove</button></td></tr>').appendTo('#'+a-1) ;
+    }*/
+}
 function remove(b){
-    $('#'+b).empty()
+    $('#'+b).empty();
 }
 </script>
 </body>
