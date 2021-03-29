@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset='utf-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+        <title>tabletest</title>
+        <style>
+        body{ margin-top: 5em; }
+        .table {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        }
+        </style>
+    </head>
+
+
+
+<body>
+<table class="table">
+<thead>
+<tr>
+<th scope="col">Nom</th>
+<th scope="col">Prenom</th>
+<th scope="col">Date de naissance</th>
+<th scope="col">Aime le cours Web</th>
+<th scope="col">Remarques</th>
+<th scope="col">CRUD</th>
+</tr>
+</thead>
+<tbody id="studentsTableBody">
+</tbody>
+</table>
+<form id="addStudentForm" action="" onsubmit="onFormSubmit();">
+<div class="form-group row">
+    <label for="inputNom" class="col-sm-2 col-form-label">Nom*</label>
+    <p id=erreur></p>
+    <div class="col-sm-3">
+        <input type="text" class="form-control" id="inputNom" >
+    </div>
+</div>
+<div class="form-group row">
+    <label for="inputPrenom" class="col-sm-2 col-form-label">Prénom</label>
+    <div class="col-sm-3">
+        <input type="text" class="form-control" id="inputPrenom" >
+    </div>
+</div>
+<div class="form-group row">
+    <label for="inputDate" class="col-sm-2 col-form-label">Date de naissance</label>
+    <div class="col-sm-3">
+        <input type="date" class="form-control" id="inputDate" >
+    </div>
+</div>
+<div class="form-group row">
+    <label for="inputCheck" class="col-sm-2 col-form-label">Aime le cours Web?</label>
+    <div class="col-sm-3">
+        <input type="checkbox" class="form-control" id="inputCheck">
+    </div>
+</div>
+<div class="form-group row">
+    <label for="inputRemarques" class="col-sm-2 col-form-label">Remarques</label>
+    <div class="col-sm-3">
+        <input type="text" class="form-control" id="inputRemarques" >
+    </div>
+</div>
+<div class="form-group row">
+    <label for="inputCRUD" class="col-sm-2 col-form-label">CRUD</label>
+    <div class="col-sm-3">
+        <input type="text" class="form-control" id="inputCRUD" >
+    </div>
+</div>
+<div class="form-group row">
+<span class="col-sm-2"></span>
+<div class="col-sm-2" >
+<button type="submit" class="btn btn-primary form-control">Submit</button>
+</div>
+</div>
+</form>
+
+
+<script>
+let idligne=0;
+let boedit=false;
+let currentligne=0;
+
+function onFormSubmit() {
+// prevent the form to be sent to the server
+event.preventDefault();
+let nom = $("#inputNom").val();
+let prenom = $("#inputPrenom").val();
+let date = $("#inputDate").val();
+let remarques = $("#inputRemarques").val();
+let check=$("#inputCheck").prop("checked");
+//$("check").val();
+if (nom!=''){
+    if (boedit==false){
+        idligne+=1;
+        $("#erreur").empty()
+    $("#studentsTableBody").append('<tr id='+idligne+'><td>'+nom+'</td><td>'+prenom+'<td><td>'+date+'<td><td>'+check+
+    '<td><td>'+remarques+
+    '</td><td><button onclick=edit('+idligne+')>edit</button><button onclick=remove('+idligne+')>remove</button></td></tr>') ;
+    }
+
+    
+    else{
+    $('#'+currentligne).empty();
+    $("#erreur").empty();
+    $('<tr id='+idligne+'><td>'+nom+'</td><td>'+prenom+'<td><td>'+date+'<td><td>'+check+
+    '<td><td>'+remarques+
+    '</td><td><button onclick=edit('+idligne+')>edit</button><button onclick=remove('
+    +idligne+')>remove</button></td></tr>').appendTo('#'+currentligne) ;
+    boedit=false;
+    }
+}
+}
+
+function edit(a){
+    $("#erreur").append('Vous êtes entrain de modifier la ligne '+a);
+    currentligne=a;
+    boedit=true;
+    /*if (nom!=''){
+        /*$("#addStudentForm").html('<form id="addStudentForm" action="" onsubmit="edit();">')
+    $("#erreur").empty();
+    $('#'+a).empty();
+    $('<tr id='+a+'><td>'+nom+'</td><td>'+prenom+'<td><td>'+date+'<td><td>'+check+
+    '<td><td>'+remarques+
+    '</td><td><button onclick=edit('+a+')>edit</button><button onclick=remove('+a+')>remove</button></td></tr>').appendTo('#'+a-1) ;
+    }*/
+}
+function remove(b){
+    $('#'+b).empty();
+}
+</script>
+</body>
+</html>
