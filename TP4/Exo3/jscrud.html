@@ -79,9 +79,28 @@
 
 
 <script>
+
+let students = [
+    {
+        id: 1,
+        nom: "Guisnet",
+        prenom: "Eloi",
+        check: true,
+        date: "03/10/1999",
+        remarques: "okok"
+
+    }
+];
+
+for (k in students){
+    $("#studentsTableBody").append('<tr id='+k.id+'><td>'+k.nom+'</td><td>'
+        +k.prenom+'<td><td>'
+        +k.date+'<td><td>'+k.check+
+    '<td><td>'+k.remarques+
+    '</td><td><button onclick=edit('+k.id+')>edit</button><button onclick=remove('+k.id+')>remove</button></td></tr>') ;
+};
 let idligne=0;
-let boedit=false;
-let currentligne=0;
+let currentligne=-1;
 
 function onFormSubmit() {
 // prevent the form to be sent to the server
@@ -92,17 +111,26 @@ let date = $("#inputDate").val();
 let remarques = $("#inputRemarques").val();
 let check=$("#inputCheck").prop("checked");
 //$("check").val();
+
 if (nom!=''){
-    if (boedit==false){
-        idligne+=1;
-        $("#erreur").empty()
-    $("#studentsTableBody").append('<tr id='+idligne+'><td>'+nom+'</td><td>'+prenom+'<td><td>'+date+'<td><td>'+check+
-    '<td><td>'+remarques+
+    if (currentligne==-1){
+        
+        students.push(idligne,nom,prenom,check,date,remarques);
+        $("#erreur").empty();
+
+    $("#studentsTableBody").append('<tr id='+idligne+'><td>'+students[idligne].nom+'</td><td>'
+        +students[idligne].prenom+'<td><td>'
+        +students[idligne].date+'<td><td>'+students[idligne].check+
+    '<td><td>'+students[idligne].remarques+
     '</td><td><button onclick=edit('+idligne+')>edit</button><button onclick=remove('+idligne+')>remove</button></td></tr>') ;
+    console.log(students[idligne]);
+    idligne+=1;
     }
 
     
     else{
+        students[currentligne]=[idligne,nom,prenom,check,date,remarques];
+        console.log(students[currentligne]);
     $('#'+currentligne).empty();
     $("#erreur").empty();
     $('<tr id='+idligne+'><td>'+nom+'</td><td>'+prenom+'<td><td>'+date+'<td><td>'+check+
@@ -117,7 +145,6 @@ if (nom!=''){
 function edit(a){
     $("#erreur").append('Vous êtes entrain de modifier la ligne '+a);
     currentligne=a;
-    boedit=true;
     /*if (nom!=''){
         /*$("#addStudentForm").html('<form id="addStudentForm" action="" onsubmit="edit();">')
     $("#erreur").empty();
