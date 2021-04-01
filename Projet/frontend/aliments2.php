@@ -112,7 +112,9 @@ if (nom!=''){
     else{
         console.log(aliments[currentligne]);
         console.log(aliments[currentligne].nom);
+        let saveid=aliments[currentligne].idsql;
         aliments[currentligne]=aliment;
+        aliments[currentligne].idsql=saveid;
     $('#'+currentligne).empty();
     $("#erreur").empty();
     $('<tr id='+currentligne+'><td>'+aliments[currentligne].nom+'</td><td>'
