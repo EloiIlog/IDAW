@@ -56,10 +56,11 @@
         $.getJSON(urlBackendPrefix+"afficherAliments.php", function(data){ 
             console.log(data);
             $.each(data, function(i, a){
+                console.log(a[2])
                 let aliment = {};
                 aliment.nom = a[0];
                 aliment.type = a[1];
-                aliment.id = a[2];
+                aliment.idsql = a[2];
                 aliments.push(aliment);
                 afficheUnAliment(aliment);
                     });
@@ -69,7 +70,7 @@
 
     function afficheUnAliment(newFood){
         newFood.id = idligne;
-        $("#alimentsTableBody").append('<tr id=aliments-'+newFood.id+'> <td> '
+        $("#alimentsTableBody").append('<tr id='+newFood.id+'> <td> '
         +newFood.nom+'  </td> <td> '
         +newFood.type+'  </td> <td><button onclick=edit('+idligne+')>edit</button><button onclick=remove('+idligne+')>remove</button></td></tr>');
         idligne++;}
@@ -85,12 +86,16 @@
     let nom = $("#inputAliment").val();
     let type = $("#inputType").val();
 //$("check").val();
-    let aliment = {};
+    let aliment={};
     aliment.nom = nom;
     aliment.type = type;
-    aliment.id = idligne;
+    console.log(aliments[idligne-1])
+    aliment.idsql= (aliments[idligne-1].idsql);
+    
+    aliment.id= idligne;
 if (nom!=''){
     if (currentligne==-1){ 
+        aliment.idsql++;
         aliments.push(aliment);
         console.log(aliments);
         $("#erreur").empty();
@@ -100,6 +105,7 @@ if (nom!=''){
         '</td> <td><button onclick=edit('+idligne+')>edit</button><button onclick=remove('+idligne+')>remove</button></td></tr>') ;
     console.log(aliments[idligne]);
     idligne++;
+    ajouteAlimentSql(aliment);
     }
 
     
@@ -117,18 +123,31 @@ if (nom!=''){
         console.log(aliments[currentligne]);
         console.log(aliments[currentligne].nom);
     currentligne=-1;
+    editAlimentSql(aliment);
     }
 }
-    envoiAlimentSql(aliment);
 }
 
-    function envoiAlimentSql(newFood){
+    function ajouteAlimentSql(newFood){
         //$(document).ready(function(){
         $.ajax({
             url: urlBackendPrefix+"addAliments.php",
             method: "POST",
             dataType : "json",
             data : newFood
+        }).always(function(response){
+                        //let data = JSON.stringify(response);
+                        console.log(response);
+    });
+    }
+    function editAlimentSql(changeFood){
+        console.log(changeFood);
+        //$(document).ready(function(){
+        $.ajax({
+            url: urlBackendPrefix+"editAliments.php",
+            method: "POST",
+            dataType : "json",
+            data : changeFood
         }).always(function(response){
                         //let data = JSON.stringify(response);
                         console.log(response);
@@ -141,7 +160,20 @@ if (nom!=''){
     currentligne=a;
     }
     function remove(b){
+        console.log(b);
+        $("#erreur").append('Vous avez supprimé la ligne '+b);
         $('#'+b).empty();
+        let num={};
+        num.idsql=aliments[b].idsql;
+        $.ajax({
+            url: urlBackendPrefix+"deleteAliments.php",
+            method: "POST",
+            dataType : "json",
+            data : num
+        }).always(function(response){
+                        //let data = JSON.stringify(response);
+                        console.log(response);
+    });
     }
     /*$(document).ready(function(){
         $.ajax({
