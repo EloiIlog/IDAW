@@ -3,5 +3,5 @@
 $servername = 'localhost';
 $username = 'root';
 $password = '';
-$database='Projet';
+$database='Aprojet';
 ?>

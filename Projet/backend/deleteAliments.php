@@ -10,8 +10,8 @@
         if($conn->connect_error){
         die('Erreur : ' .$conn->connect_error);
         }
-        $sql = "DELETE FROM aliments 
-        WHERE id=".$_POST['idsql']."";
+        $sql = "DELETE FROM aliments2 
+        WHERE idAliment=".$_POST['idsql']."";
         
 
         echo $sql;

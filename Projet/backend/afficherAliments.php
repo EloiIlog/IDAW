@@ -1,27 +1,29 @@
 <?php
+    require_once("config.php");
     
-get_aliments();
+    if(isset($_GET['typeSel'])){
+        $a=$_GET['typeSel'];
+    }
+    else{
+        $a="sandwichs";
+    }
 
-    function get_aliments(){
-        require_once('config.php');
-        //On établit la connexion
-        $conn = mysqli_connect($servername, $username, $password,$database);
-        //On vérifie la connexion
-        if($conn->connect_error){
-        die('Erreur : ' .$conn->connect_error);
-        }
+    try{
+        $dbco = new PDO("mysql:host=$servername;dbname=$database;charset=utf8", $username, $password);
+        $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
 
-        $sql = "SELECT * from ALIMENTS";
-        $affiche= mysqli_query($conn, $sql);
+        $infosAliments = $dbco->prepare("SELECT * FROM ALIMENTS2 WHERE type='".$a."'");
+        $infosAliments->execute();
+        
 
-        $array = array();
-        while($row = mysqli_fetch_row($affiche)){
-            array_push($array, $row);
-        }
-        echo json_encode($array, JSON_UNESCAPED_UNICODE);
+        $resultatinfosAliments = $infosAliments->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($resultatinfosAliments);
+    }
+    catch(PDOException $e){
+        echo "Erreur : " . $e->getMessage();
+    }
 
-        mysqli_close($conn); 
-}
 
     
 ?>
