@@ -84,23 +84,19 @@ function chargeHistorique(){
     console.log(selection);
 
     $.ajax({
-            url: urlBackendPrefix+"afficherHistorique.php",
-            method: "POST",
-            dataType : "json",
-            data : selection,
-            /*success : function(lignehistorique){
-
-            }*/    
+        url: urlBackendPrefix+"afficherHistorique.php",
+        method: "POST",
+        dataType : "json",
+        data : selection,    
         }).always(function(response){
-                        //let data = JSON.stringify(response);
-                        console.log(response);
-                        historique=response;
-            $.each(response, function(i, a){
-                console.log(a);
-                afficheUneLigne(a);
-                
-                    });
-    });
+        //let data = JSON.stringify(response);
+        console.log(response);
+        historique=response;
+        $.each(response, function(i, a){
+            console.log(a);
+            afficheUneLigne(a);
+            });
+        });
 }
 
 function afficheUneLigne(record){
