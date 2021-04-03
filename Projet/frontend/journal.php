@@ -96,6 +96,11 @@
             record.quantites=quantites;
             record.nbaliment=indicealiment;
             ajouteHistorique(record);
+            /*setTimeout(execut(), 30000);
+            function execut() {
+                ajouteComporepas(record);
+                }*/
+            ajouteComporepas(record);
         }
 
         function ajoutChamps(){
@@ -123,6 +128,18 @@
                 });
         }
 
+        function ajouteComporepas(newRecord){
+            console.log(newRecord);
+            $.ajax({
+                url: urlBackendPrefix+"addComporepas.php",
+                method: "POST",
+                dataType : "json",
+                data : newRecord,    
+            }).always(function(response){
+                //let data = JSON.stringify(response);
+                console.log(response);
+                });
+        }
 
         </script>
 
