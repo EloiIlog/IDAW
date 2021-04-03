@@ -173,7 +173,7 @@
         type.typeSel=$("#typeSelection").val();
         $.ajax({
             url: urlBackendPrefix+"afficherAliments.php",
-            method: "GET",
+            method: "POST",
             dataType : "json",
             data : type
             
