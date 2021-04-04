@@ -35,16 +35,34 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputType" class="col-sm-2 col-form-label">Type de repas</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control" id="inputType" >
-            </div>
+            <label for="inputTypeRepas" class="col-sm-2 col-form-label">Type de repas</label>
+            <select id="inputTypeRepas" name="inputTypeRepas">
+                <option value="Petit Déjeuner">Petit Déjeuner</option>
+                <option value="Déjeuner">Déjeuner</option>
+                <option value="Diner">Diner</option>
+                <option value="Collation matin">Collation matin</option>
+                <option value="Collation après midi">Collation après midi</option>
+                <option value="Brunch">Brunch</option>
+                <option value="Grignotage">Grignotage</option>
+            <select>
+        </div>
+        <div class="form-recherche">
+            <label for="searchTypeAliment" class="col">Type d'aliment n°1</label>
+            <select id="typeSelectionAliment1" name="typeSelectionAliment1">
+                <option  value="tout">Tout afficher</option>
+            <select>
         </div>
         <div class="form-group row">
-            <label for="inputAliment1" class="col-sm-2 col-form-label">Aliment consommé n°1</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control" id="inputAliment1" >
-            </div>
+                <span class="col-sm-2"></span>
+                <div class="col-sm-2" >
+                    <button onclick="selectTypeAliment();" class="btn btn-primary form-control">Valider votre selection de type</button>
+                </div>
+        </div>
+        <div class="form-group row">
+        <label for="searchAliment" class="col">Aliment consommé n°1</label>
+            <select id="inputAliment1" name="inputAliment1">
+                <option  value="tout">aliment1</option>
+            <select>
         </div>
         <div class="form-group row" id=quantite>
             <label for="inputQuantite2" class="col-sm-2 col-form-label">Quantité d'aliment n°1 (en g)</label>
@@ -78,17 +96,99 @@
         let indicealiment=1;
         let aliments=[];
         let quantites=[];
+        let timer=0;
+        let types={};
+
+        $(document).ready(function(){
+        $.getJSON(urlBackendPrefix+"recupTypes.php", function(data){
+            console.log(data);
+            types=data;
+            $.each(data, function(i, a){
+                $("#typeSelectionAliment1" ).append('<option value='+a.type+'>'+a.type+'</option>')
+                //$("#inputType" ).append('<option value='+a.type+'>'+a.type+'</option>')
+                });
+            });
+            console.log(types);
+        });
+
+        function selectTypeAliment(){
+            event.preventDefault();
+            let envoi={};
+            typeSel=$('#typeSelectionAliment1').val();
+            console.log("voici la selection :"+typeSel);
+            envoi.typeA=typeSel;
+            console.log("voici la selection :"+envoi.typeA);
+            /*$(document).ready(function(){
+        $.getJSON(urlBackendPrefix+"afficherAliments.php" , function(envoi){
+            console.log(envoi);
+            aliments=envoi;
+            //types=data;
+            $.each(data, function(i, a){
+                $("#inputAliment1" ).append('<option value='+a.nom+'>'+a.nom+'</option>')
+                });
+            });
+            console.log(aliments);*/
+        //});
+            
+            $.ajax({
+                url: urlBackendPrefix+"afficherAliments.php",
+                method: "POST",
+                dataType : "json",
+                data : envoi,
+                /*succes: function(data, statut){
+                    console.log(data);
+                $.each(data, function(i, a){
+                    console.log(a.nom);
+                    $("#inputAliment1" ).append('<option value='+a.nom+'>'+a.nom+'</option>')
+                    //$("#inputType" ).append('<option value='+a.type+'>'+a.type+'</option>')
+                    });
+                }*/
+            }).always(function(response){
+                //console.log(response);
+                //let data = JSON.stringify(response);
+                console.log(response);
+                data=response;
+                console.log(data);
+                console.log(data[1]);
+                $.each(data, function(i, a){
+                    console.log(a.nom);
+                    $("#inputAliment1" ).append('<option value='+a.nom+'>'+a.nom+'</option>')
+                    //$("#inputType" ).append('<option value='+a.type+'>'+a.type+'</option>')
+                    });
+                });
+        }
+
+        function ajoutChamps(){
+            event.preventDefault();
+            indicealiment++;
+            $("<div class='form-recherche'><label for='searchTypeAliment' class='col'>Type d'aliment n°"
+            +indicealiment+"</label><select id='typeSelectionAliment"
+            +indicealiment+"' name='typeSelectionAliment"
+            +indicealiment+"'><option value='tout'>Tout afficher</option><select></div></div><div class='form-group row'><label for='inputAliment'"
+            +indicealiment+" class='col-sm-2 col-form-label'>Aliment consommé n°"
+            +indicealiment+"</label><div class='col-sm-3'><input type='text' class='form-control' id='inputAliment"
+            +indicealiment+"' ></div></div><div class='form-group row'><label for='inputQuantite"
+            +indicealiment+"' class='col-sm-2 col-form-label'>Quantite n°"
+            +indicealiment+"</label><div class='col-sm-3'><input type='text' class='form-control' id='inputQuantite"
+            +indicealiment+"' ></div>").appendTo("#quantite");
+            $.each(types, function(i, a){
+                $("#typeSelectionAliment"+indicealiment+"").append('<option value='+a.type+'>'+a.type+'</option>');
+            });
+        }
+
         function ajoutJournal(){
             event.preventDefault();
             $("#enCours").append(`Votre repas à bien été enregistré dans l'historique <br>
             Pour voir vos statistique aller dans l'onglet <a href='historique.php'>historique</a>`)
             record.date=$('#inputDate').val();
             record.time=$('#inputHeure').val();
-            record.type=$('#inputType').val();
+            record.type=$('#inputTypeRepas').val();
             record.comment=$('#inputCommentaires').val();
             for (let i = 1; i <= indicealiment; i++) {
                 let a=$('#inputAliment'+i+'').val();
+                console.log(a);
                 aliments[i-1]=a;
+                console.log(aliments);
                 let b=$('#inputQuantite'+i+'').val()
                 quantites[i-1]=b;
             }
@@ -100,19 +200,12 @@
             function execut() {
                 ajouteComporepas(record);
                 }*/
+            for (let j = 1; j <= 1000000000; j++) {
+                timer=timer+1;
+                timer=timer%2;
+            }
             ajouteComporepas(record);
-        }
-
-        function ajoutChamps(){
-            event.preventDefault();
-            indicealiment++;
-            $("<label for='inputAliment'"
-            +indicealiment+" class='col-sm-2 col-form-label'>Aliment consommé n°"
-            +indicealiment+"</label><div class='col-sm-3'><input type='text' class='form-control' id='inputAliment"
-            +indicealiment+"' ></div><label for='inputQuantite"
-            +indicealiment+"' class='col-sm-2 col-form-label'>Quantite n°"
-            +indicealiment+"</label><div class='col-sm-3'><input type='text' class='form-control' id='inputQuantite"
-            +indicealiment+"' ></div>").appendTo("#quantite");
+            timer=0;
         }
 
         function ajouteHistorique(newRecord){
