@@ -1,7 +1,9 @@
-let idligne = 0; 
+    let urlBackendPrefix = "http://localhost/GitHub/IDAW/projet/backend/"
+    let idligne = 0; 
     let aliments = [];
     let currentEditedFoodId =-1;
-    let urlBackendPrefix = "http://localhost/GitHub/IDAW/projet/backend/";
+    
+    console.log(urlBackendPrefix);
     let types = {};
     let aliment = {};
 
