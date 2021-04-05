@@ -3,22 +3,22 @@
     <head>
 <script src='js/aliments.js' async></script>
 </head>
-
-<form id="selectType" action="" onsubmit="chargeAliments();">
-    <div class="form-recherche">
-        <label for="searchType" class="col">Type d'aliment</label>
+<h1 id="titre">Renseignements Aliments</h1>
+<form class="justify-content-center" id="selectType" action="" onsubmit="chargeAliments();">
+    <div class="form-group">
+        <label for="searchType" class="col-sm-2 col-form-label">Type d'aliment</label>
         <select id="typeSelection" name="typeSelection">
         <select>
     </div>
     <div class="form-group row">
             <span class="col-sm-2"></span>
             <div class="col-sm-2" >
-                <button type="submit" class="btn">Recherche</button>
+                <button type="submit" class="btn btn-primary form-control">Recherche</button>
             </div>
         </div>
 </form>
 
-<table class="table">
+<table class="table table-striped table-bordered">
     <thead>
         <tr>
             <th scope="col">Nom Aliment</th>

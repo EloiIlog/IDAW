@@ -43,17 +43,17 @@
         function ajoutChamps(){
             event.preventDefault();
             indicealiment++;
-            $("<div class='form-recherche'><label for='searchTypeAliment' class='col'>Type d'aliment n°"
+            $("<div class='form-group row'><label for='searchTypeAliment' class='col-sm-2 col-form-label'>Type d'aliment n°"
             +indicealiment+"</label><select id='typeSelectionAliment"
             +indicealiment+"' name='typeSelectionAliment"
-            +indicealiment+"'><option value='tout'>Tout afficher</option><select></div></div><div class='form-group row'><span class='col-sm-2'></span><div class='col-sm-2' ><button onclick='selectTypeAliment("
-            +indicealiment+");' class='btn btn-primary form-control'>Valider votre selection de type</button></div></div><div class='form-group row'><label for='searchAliment' class='col'>Aliment consommé n°"
+            +indicealiment+"'><select></div><div class='form-group row'><span class='col-sm-2'></span><div class='col-sm-2' ><button onclick='selectTypeAliment("
+            +indicealiment+");' class='btn btn-primary form-control'>Valider</button></div></div><div class='form-group row'><label for='searchAliment' class='col-sm-2 col-form-label'>Aliment consommé n°"
             +indicealiment+"</label><select id='inputAliment"
-            +indicealiment+"' name='inputAliment1"
-            +indicealiment+"'><select><div class='col-sm-3'></div></div><div class='form-group row'><label for='inputQuantite"
+            +indicealiment+"' name='inputAliment"
+            +indicealiment+"'><select></div><div class='form-group row'><label for='inputQuantite"
             +indicealiment+"' class='col-sm-2 col-form-label'>Quantite n°"
             +indicealiment+"</label><div class='col-sm-3'><input type='text' class='form-control' id='inputQuantite"
-            +indicealiment+"' ></div>").appendTo("#quantite");
+            +indicealiment+"' ></div></div>").appendTo("#quantite");
             $.each(types, function(i, a){
                 $("#typeSelectionAliment"+indicealiment+"").append('<option value='+a.type+'>'+a.type+'</option>');
             });

@@ -4,7 +4,7 @@
 <script src='js/historique.js' async></script>
 </head>
 
-
+<h1 id="titre">Historique</h1>
     <form id="selectHist" action="" onsubmit="chargeHistorique();">
         <div class="form-recherche">
             <label for="searchDuree" class="col">Durée de l'enregistrement</label>
@@ -24,12 +24,12 @@
         <div class="form-group row">
                 <span class="col-sm-2"></span>
                 <div class="col-sm-2" >
-                    <button type="submit" class="btn">Recherche</button>
+                    <button type="submit" class="btn btn-primary form-control">Recherche</button>
                 </div>
             </div>
     </form>
 
-    <table class="table">
+    <table class="table table-striped table-bordered">
     <thead>
         <tr>
             <th scope="col">Date</th>
@@ -42,5 +42,6 @@
     <tbody id="historiqueTableBody">
     </tbody>
 </table>
+<div id="boutonStat" class="row justify-content-center"></div>
         <h1>Statistique nutritionnel</h1>
             <div id="stat"></div>

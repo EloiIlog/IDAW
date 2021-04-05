@@ -27,7 +27,9 @@ function chargeHistorique(){
     selection.duree=dureeSel;
     console.log(selection);
     $('#stat').empty();
-    $('#stat').append('<button onclick=statSelection()>Stat sur la période selectionné</button>')
+    $("#boutonStat").empty();
+
+    $('#boutonStat').append('<button onclick=statSelection()>Stat sur la période selectionné</button>')
     $.ajax({
         url: urlBackendPrefix+"afficherHistorique.php",
         method: "POST",
@@ -156,7 +158,7 @@ function statRepas(i){
     +historiqueRep[j].energieR+"</p><br><p>La composition de votre repas est "
     +partLip+"% de lipides, "
     +partProt+"% de proteines, "
-    +partGlu+"% de glucides.</p><br><p>Proteines: "
+    +partGlu+"% de glucides.</p><br><div id='bar'></div><br><p>Proteines: "
     +historiqueRep[j].proteinesR+"g</p><br><p>Lipides: "
     +historiqueRep[j].lipidesR+"g</p><br><p>Glucides: "
     +historiqueRep[j].glucidesR+"g</p><br><p>Lipides: "
@@ -169,6 +171,11 @@ function statRepas(i){
     $.each(historiqueRep[j].aliments, function(k, a){
         $("#aliments").append(" - "+historiqueRep[j].aliments[k]+"<br>");
         });
+        $("#bar").append(`<div class="progress">
+        <div class="progress-bar bg-info" role="progressbar" style="width: `+(1+partLip)+`%" aria-valuenow="`+(1+partLip)+`" aria-valuemin="0" aria-valuemax="100">Lipides</div>
+        <div class="progress-bar bg-success" role="progressbar" style="width: `+partProt+`%" aria-valuenow="`+partProt+`" aria-valuemin="0" aria-valuemax="100">Proteines</div>
+        <div class="progress-bar" role="progressbar" style="width: `+partGlu+`%" aria-valuenow="`+partGlu+`" aria-valuemin="0" aria-valuemax="100">Glucides</div>
+      </div>`);
 
 }
 function statAliment(i){
@@ -188,6 +195,8 @@ function statAliment(i){
 }
 
 function statSelection(periode){
+    $("#stat").empty();
+
     console.log("periode");
     let energieT=0;
     let proteinesT=0;
@@ -218,7 +227,7 @@ function statSelection(periode){
     +energieT+"</p><br><p>La composition de votre alimentation sur la période selectionnée est "
     +partLipT+"% de lipides, "
     +partProtT+"% de proteines, "
-    +partGluT+"% de glucides.</p><br><p>Proteines: "
+    +partGluT+"% de glucides.</p><br><div id='bar'></div><p>Proteines: "
     +proteinesT+"g</p><br><p>Lipides: "
     +lipidesT+"g</p><br><p>Glucides: "
     +glucidesT+"g</p><br><p>Lipides: "
@@ -227,4 +236,9 @@ function statSelection(periode){
     +selT+"g</p><br><p>Potassium: "
     +potassiumT+"mg</p><br><p>Sucres: "
     +sucresT+"g</p>");
+    $("#bar").append(`<div class="progress">
+    <div class="progress-bar bg-info" role="progressbar" style="width: `+(1+partLipT)+`%" aria-valuenow="`+(1+partLipT)+`" aria-valuemin="0" aria-valuemax="100">Lipides</div>
+    <div class="progress-bar bg-success" role="progressbar" style="width: `+partProtT+`%" aria-valuenow="`+partProtT+`" aria-valuemin="0" aria-valuemax="100">Proteines</div>
+    <div class="progress-bar" role="progressbar" style="width: `+partGluT+`%" aria-valuenow="`+partGluT+`" aria-valuemin="0" aria-valuemax="100">Glucides</div>
+  </div>`);
 }

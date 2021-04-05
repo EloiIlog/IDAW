@@ -36,33 +36,34 @@
                 <option value="Grignotage">Grignotage</option>
             <select>
         </div>
-        <div class="form-recherche">
-            <label for="searchTypeAliment" class="col">Type d'aliment n°1</label>
+        <div class="form-group row">
+            <label for="searchTypeAliment" class="col-sm-2 col-form-label">Type d'aliment n°1</label>
             <select id="typeSelectionAliment1" name="typeSelectionAliment1">
             <select>
         </div>
         <div class="form-group row">
                 <span class="col-sm-2"></span>
                 <div class="col-sm-2" >
-                    <button onclick="selectTypeAliment(1);" class="btn btn-primary form-control">Valider votre selection de type</button>
+                    <button onclick="selectTypeAliment(1);" class="btn btn-primary form-control">Valider</button>
                 </div>
         </div>
         <div class="form-group row">
-        <label for="searchAliment" class="col">Aliment consommé n°1</label>
+        <label for="searchAliment" class="col-sm-2 col-form-label">Aliment consommé n°1</label>
             <select id="inputAliment1" name="inputAliment1">
-                <option  value="tout">aliment1</option>
+                
             <select>
         </div>
         <div class="form-group row" id=quantite>
-            <label for="inputQuantite2" class="col-sm-2 col-form-label">Quantité d'aliment n°1 (en g)</label>
+            <label for="inputQuantite1" class="col-sm-2 col-form-label">Quantité d'aliment n°1 (en g)</label>
             <div class="col-sm-3">
                 <input type="text" class="form-control" id="inputQuantite1" >
             </div>
         </div>
+        <div class="form-group row" id="repere"></div>
         <div class="form-group row">
                 <span class="col-sm-2"></span>
                 <div class="col-sm-2" >
-                    <button onclick="ajoutChamps();" class="btn btn-primary form-control">Ajouter un aliment</button>
+                    <button onclick="ajoutChamps();" class="btn btn-primary form-control">Ajouter aliments</button>
                 </div>
         </div>
         <div class="form-group row">

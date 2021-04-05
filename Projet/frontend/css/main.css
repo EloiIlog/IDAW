@@ -5,13 +5,13 @@ body{ margin-top: 5em; }
         }
 
 body{
-  background-color:plum;
+  background-color: #20c896 ;
 }
 
 .conteneur-titre{
-  border: 2px solid blue;
+  border: 2px solid #20c896;
   width: 100%;
-  background-color: aquamarine;;
+  background-color: #20c896;
 }
 
 .base{
@@ -28,18 +28,18 @@ button{
   align-content: space-around;
   width: 100%;
   box-sizing: border-box;
-  background-color: plum;
+  background-color: #17a2b8;
 }
 
 .colonne{
   flex-direction: column;
-  background-color:plum;
+  background-color:#20c896;
 }
 
 .ligne{
   flex-direction: row;
-  background-color: aquamarine;
-  border: 2px solid blue;
+  background-color: #20c397;
+  border: 2px solid #20c397;
 }
 
 #current{
@@ -72,6 +72,6 @@ p{
 }
 footer{
   width: 100%;
-  background-color: aquamarine;
+  background-color: #20c697;
   color: white;
 }
