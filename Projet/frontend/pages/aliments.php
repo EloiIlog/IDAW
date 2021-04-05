@@ -36,6 +36,7 @@
     <tbody id="alimentsTableBody">
     </tbody>
 </table>
+<h2>Ajouter des aliments</h2>
     <form id="addAlimentsForm" action="" onsubmit="onFormSubmit();">
         <div class="form-group row">
             <label for="inputAliment" class="col-sm-2 col-form-label">Nom Aliment</label>
