@@ -1,69 +1,9 @@
-<!doctype html>
-<html lang="fr">
-    <head>
-        <meta charset='utf-8'>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-        <title>Historique</title>
-        <style>
-        body{ margin-top: 5em; }
-        .table {
-        margin-top: 100px;
-        margin-bottom: 100px;
-        }
-        </style>
-    </head>
-    <body>
-
-    <form id="selectHist" action="" onsubmit="chargeHistorique();">
-        <div class="form-recherche">
-            <label for="searchDuree" class="col">Durée de l'enregistrement</label>
-            <select id="dureeSelection" name="dureeSelection">
-                <option value="tout">tout</option>
-                <option value="jour">jour</option>
-                <option value="semaine">semaine</option>
-                <option value="mois">mois</option>
-            <select>
-        </div>
-        <div class="form-recherche">
-            <label for="searchType" class="col">Type d'aliment</label>
-            <select id="typeSelection" name="typeSelection">
-                <option value="tout">Tout afficher</option>
-            <select>
-        </div>
-        <div class="form-group row">
-                <span class="col-sm-2"></span>
-                <div class="col-sm-2" >
-                    <button type="submit" class="btn">Recherche</button>
-                </div>
-            </div>
-    </form>
-
-    <table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Heure</th>
-            <th scope="col">Type de repas</th>
-            <th scope="col">Commentaires</th>
-            <th scope="col">Aliments</th>
-        </tr>
-    </thead>
-    <tbody id="historiqueTableBody">
-    </tbody>
-</table>
-        <h1>Statistique nutritionnel</h1>
-            <div id="stat"></div>
-
-
-<script>
-    let urlBackendPrefix = "http://localhost/GitHub/IDAW/projet/backend/";
+let urlBackendPrefix = "http://localhost/GitHub/IDAW/projet/backend/";
         let types={};
         let historiqueAl={};
         let historiqueRep=[];
         let groupRepas=[];
         let dureeSel='';
-        //let aliments={};
 
 //Ajoute le selecteur de type
 $(document).ready(function(){
@@ -72,7 +12,6 @@ $(document).ready(function(){
             types=data;
             $.each(data, function(i, a){
             $("#typeSelection" ).append('<option value='+a.type+'>'+a.type+'</option>')
-            //$("#inputType" ).append('<option value='+a.type+'>'+a.type+'</option>')
         });
                     });
                     console.log(types);
@@ -95,22 +34,10 @@ function chargeHistorique(){
         dataType : "json",
         data : selection,    
         }).always(function(response){
-        //let data = JSON.stringify(response);
         console.log(response);
         
         $.each(response, function(i, a){
-            /*let ligne={};
-            ligne.date=a.date;
-            ligne.heure=a.date;
-            ligne.aliment=a.nom;
-            aliment.date=a.date;
-            aliment.heure=a.heure;
-            aliment.aliment=a.nom;
-            aliments.push(aliment);
-            ligne.typeRepas=a.typeRepas;
-            ligne.energie=
-            console.log(ligne);
-            Prehistorique.push(ligne);*/
+            
             a.id=i;
             afficheUneLigne(a);
             });
@@ -301,6 +228,3 @@ function statSelection(periode){
     +potassiumT+"mg</p><br><p>Sucres: "
     +sucresT+"g</p>");
 }
-
-
-</script>

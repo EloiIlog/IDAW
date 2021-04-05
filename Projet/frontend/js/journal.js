@@ -1,95 +1,3 @@
-<!doctype html>
-<html lang="fr">
-    <head>
-        <meta charset='utf-8'>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-        <title>Journal</title>
-        <style>
-        body{ margin-top: 5em; }
-        .table {
-        margin-top: 100px;
-        margin-bottom: 100px;
-        }
-        </style>
-    </head>
-
-
-        <h1 id="titre">Journal de Bord</h1>
-        <p>Rentrez votre dernier repas</p>
-        <p id="enCours"></p>
-
-    <form id="addRepasForm" action="" onsubmit="ajoutJournal();">
-        <div class="form-group row">
-            <label for="inputDate" class="col-sm-2 col-form-label">Date du repas</label>
-            <p id=erreur></p>
-            <div class="col-sm-3">
-                <input type="date" class="form-control" id="inputDate" >
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputHeure" class="col-sm-2 col-form-label">Heure du repas</label>
-            <p id=erreur></p>
-            <div class="col-sm-3">
-                <input type="time" class="form-control" id="inputHeure" >
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputTypeRepas" class="col-sm-2 col-form-label">Type de repas</label>
-            <select id="inputTypeRepas" name="inputTypeRepas">
-                <option value="Petit Déjeuner">Petit Déjeuner</option>
-                <option value="Déjeuner">Déjeuner</option>
-                <option value="Diner">Diner</option>
-                <option value="Collation matin">Collation matin</option>
-                <option value="Collation après midi">Collation après midi</option>
-                <option value="Brunch">Brunch</option>
-                <option value="Grignotage">Grignotage</option>
-            <select>
-        </div>
-        <div class="form-recherche">
-            <label for="searchTypeAliment" class="col">Type d'aliment n°1</label>
-            <select id="typeSelectionAliment1" name="typeSelectionAliment1">
-            <select>
-        </div>
-        <div class="form-group row">
-                <span class="col-sm-2"></span>
-                <div class="col-sm-2" >
-                    <button onclick="selectTypeAliment(1);" class="btn btn-primary form-control">Valider votre selection de type</button>
-                </div>
-        </div>
-        <div class="form-group row">
-        <label for="searchAliment" class="col">Aliment consommé n°1</label>
-            <select id="inputAliment1" name="inputAliment1">
-                <option  value="tout">aliment1</option>
-            <select>
-        </div>
-        <div class="form-group row" id=quantite>
-            <label for="inputQuantite2" class="col-sm-2 col-form-label">Quantité d'aliment n°1 (en g)</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control" id="inputQuantite1" >
-            </div>
-        </div>
-        <div class="form-group row">
-                <span class="col-sm-2"></span>
-                <div class="col-sm-2" >
-                    <button onclick="ajoutChamps();" class="btn btn-primary form-control">Ajouter un aliment</button>
-                </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputCommentaires" class="col-sm-2 col-form-label">Commentaires sur le repas</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control" id="inputCommentaires" >
-            </div>
-        </div>
-        <div class="form-group row">
-            <span class="col-sm-2"></span>
-            <div class="col-sm-2" >
-                <button type="submit" class="btn btn-primary form-control">Submit</button>
-            </div>
-        </div>
-    </form>
-
-    <script>
         let urlBackendPrefix = "http://localhost/GitHub/IDAW/projet/backend/";
         let record={};
         let indicealiment=1;
@@ -105,7 +13,6 @@
             types=data;
             $.each(data, function(i, a){
                 $("#typeSelectionAliment1" ).append('<option value='+a.type+'>'+a.type+'</option>')
-                //$("#inputType" ).append('<option value='+a.type+'>'+a.type+'</option>')
                 });
             });
             console.log(types);
@@ -159,7 +66,7 @@
         function ajoutJournal(){
             event.preventDefault();
             $("#enCours").append(`Votre repas à bien été enregistré dans l'historique <br>
-            Pour voir vos statistique aller dans l'onglet <a href='historique.php'>historique</a>`)
+            Pour voir vos statistique aller dans l'onglet <a href='pages/historique.php'>historique</a>`)
             record.date=$('#inputDate').val();
             record.time=$('#inputHeure').val();
             record.type=$('#inputTypeRepas').val();
@@ -176,19 +83,6 @@
             record.quantites=quantites;
             record.nbaliment=indicealiment;
             ajouteHistorique(record);
-            //setTimeout(ajouteComporepas(record), 2000);
-            /*for (let j = 1; j <= 1000000000; j++) {
-                timer=timer+1;
-            }
-            console.log(timer);
-            if (timer>999999998){
-                for (let k = 0; k < indicealiment; k++){
-                record.indiceEnCours=k;
-                
-                }
-                timer=0;
-             
-            }*/
         }
 
         function ajouteHistorique(newRecord){
@@ -199,7 +93,6 @@
                 dataType : "json",
                 data : newRecord,    
             }).always(function(response){
-                //let data = JSON.stringify(response);
                 console.log(response);
                 ajouteComporepas(newRecord);
                 });
@@ -213,10 +106,7 @@
                 dataType : "json",
                 data : newRecord,    
             }).always(function(response){
-                //let data = JSON.stringify(response);
                 console.log(response);
                 });
         }
-
-        </script>
 
