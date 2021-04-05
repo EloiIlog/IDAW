@@ -23,9 +23,9 @@
         WHERE nom='".$aliments[$i]."'), '".$quantites[$i]."');";
         }*/
         
-        $sql1 = "INSERT INTO historique (date, heure, IdRepas, typeRepas, IdUtilisateur) 
+        $sql1 = "INSERT INTO historique (date, heure, IdRepas, typeRepas, IdUtilisateur, commentaires) 
         VALUES ('".$_POST['date']."', 
-        '".$_POST['time']."', NULL, '".$_POST['type']."', '16');";
+        '".$_POST['time']."', NULL, '".$_POST['type']."', '16','".$_POST['comment']."');";
         echo "1  : :".$sql1;
         mysqli_query($conn,$sql1);
         

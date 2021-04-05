@@ -8,13 +8,14 @@
         $interval="AND date between DATE_SUB(CURRENT_DATE,INTERVAL 7 DAY) 
         AND CURRENT_DATE";
     }
+
     else if ($_POST['duree']=="jour"){
         $interval="AND date=CURRENT_DATE";
     }
     else if ($_POST['duree']=="tout"){
         $interval="";
     }
-    
+
     if ($_POST['type']=="tout"){
         $type="";
     }
@@ -27,9 +28,10 @@
         $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
 
-        $infosAliments = $dbco->prepare("SELECT date, heure, nom, type, quantite, energie, sel 
+        $infosAliments = $dbco->prepare("SELECT date, heure, nom, typeRepas, 
+        quantite, energie, proteines, glucides, lipides, sucres, AG, sel, potassium, commentaires
         FROM aliments2 as a, comporepas as r, historique as h 
-        WHERE h.IdRepas=r.IdRepas AND r.IdAliment=a.IdAliment
+        WHERE h.heure=r.heureR AND h.date=r.dateR AND r.IdAliment=a.IdAliment
         ".$type."
         ".$interval."");
         $infosAliments->execute();

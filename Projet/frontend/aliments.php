@@ -4,7 +4,7 @@
         <meta charset='utf-8'>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-        <title>CRUD Aliments</title>
+        <title>Aliments</title>
         <style>
         body{ margin-top: 5em; }
         .table {
@@ -16,7 +16,7 @@
     <body>
 
 
-<form id="selectType" action="" onsubmit="chargeType();">
+<form id="selectType" action="" onsubmit="chargeAliments();">
     <div class="form-recherche">
         <label for="searchType" class="col">Type d'aliment</label>
         <select id="typeSelection" name="typeSelection">
@@ -62,7 +62,10 @@
         <div class="form-group row">
             <label for="inputType" class="col-sm-2 col-form-label">Type d'aliment</label>
             <div class="col-sm-3">
-                <input type="text" class="form-control" id="inputType" >
+            <div class="form-recherche">
+            <select id="inputType" name="inputType">
+            <select>
+        </div>
             </div>
         </div>
         <div class="form-group row">
@@ -128,9 +131,10 @@
     let urlBackendPrefix = "http://localhost/GitHub/IDAW/projet/backend/";
     let types = {};
     let currentType = "sandwichs";
+    let aliment = {};
     //$("#alimentsTableBody").append("coucou");
 
-    $(document).ready(function(){
+    /*$(document).ready(function(){
         $.getJSON(urlBackendPrefix+"afficherAliments.php", function(data){
             console.log(data);
             $.each(data, function(i, a){
@@ -151,7 +155,7 @@
                     });
                     console.log(aliments);
                 });
-            });
+            });*/
 
 
 
@@ -161,28 +165,46 @@
             types=data;
             $.each(data, function(i, a){
             $("#typeSelection" ).append('<option value='+a.type+'>'+a.type+'</option>')
-            //$("#inputType" ).append('<option value='+a.type+'>'+a.type+'</option>')
+            $("#inputType" ).append('<option value='+a.type+'>'+a.type+'</option>')
         });
                     });
                     console.log(types);
             });
 
-    function chargeType(currentType){
+    function chargeAliments(currentType){
         event.preventDefault();
-        let type = {};
-        type.typeSel=$("#typeSelection").val();
+        $('#alimentsTableBody').empty();
+        let selection={};
+        selection.typeA=$('#typeSelection').val();
         $.ajax({
             url: urlBackendPrefix+"afficherAliments.php",
             method: "POST",
             dataType : "json",
-            data : type
+            data : selection
             
         }).always(function(response){
                         //let data = JSON.stringify(response);
                         console.log(response);
-    });console.log(type);
-        
-    
+                        console.log(response[0]);
+            $.each(response, function(i, a){
+                aliment.ag=a.AG;
+                aliment.idsql = a.IdAliment;
+                aliment.nom = a.nom;
+                aliment.type = a.type;
+                aliment.energie = a.energie;
+                aliment.proteines = a.proteines;
+                aliment.glucides = a.glucides;
+                aliment.lipides = a.lipides;
+                aliment.sucres = a.sucres;
+                aliment.ag = a.AG;
+                aliment.sel = a.sel;
+                aliment.potassium = a.potassium;
+                aliment.idsql = a.IdAliment;
+                aliments.push(aliment);
+                afficheUnAliment(aliment);
+                    });
+                    console.log(aliments);
+        });   
     }
 
     function afficheUnAliment(newFood){
@@ -191,7 +213,7 @@
         $("#alimentsTableBody").append('<tr id='+newFood.id+'> <td> '
         +newFood.nom+'  </td> <td> '
         +newFood.type+'  </td><td> '
-        +newFood.energie+'  </td><td> '
+        +newFood.energie+'(kcal/100g)  </td><td> '
         +newFood.proteines+'  </td><td> '
         +newFood.glucides+'  </td><td> '
         +newFood.lipides+'  </td><td> '

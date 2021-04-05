@@ -49,13 +49,12 @@
         <div class="form-recherche">
             <label for="searchTypeAliment" class="col">Type d'aliment n°1</label>
             <select id="typeSelectionAliment1" name="typeSelectionAliment1">
-                <option  value="tout">Tout afficher</option>
             <select>
         </div>
         <div class="form-group row">
                 <span class="col-sm-2"></span>
                 <div class="col-sm-2" >
-                    <button onclick="selectTypeAliment();" class="btn btn-primary form-control">Valider votre selection de type</button>
+                    <button onclick="selectTypeAliment(1);" class="btn btn-primary form-control">Valider votre selection de type</button>
                 </div>
         </div>
         <div class="form-group row">
@@ -98,6 +97,7 @@
         let quantites=[];
         let timer=0;
         let types={};
+        let selAliment={};
 
         $(document).ready(function(){
         $.getJSON(urlBackendPrefix+"recupTypes.php", function(data){
@@ -111,49 +111,24 @@
             console.log(types);
         });
 
-        function selectTypeAliment(){
+        function selectTypeAliment(id){
             event.preventDefault();
             let envoi={};
-            typeSel=$('#typeSelectionAliment1').val();
+            typeSel=$("#typeSelectionAliment"+id+"").val();
             console.log("voici la selection :"+typeSel);
             envoi.typeA=typeSel;
             console.log("voici la selection :"+envoi.typeA);
-            /*$(document).ready(function(){
-        $.getJSON(urlBackendPrefix+"afficherAliments.php" , function(envoi){
-            console.log(envoi);
-            aliments=envoi;
-            //types=data;
-            $.each(data, function(i, a){
-                $("#inputAliment1" ).append('<option value='+a.nom+'>'+a.nom+'</option>')
-                });
-            });
-            console.log(aliments);*/
-        //});
-            
             $.ajax({
                 url: urlBackendPrefix+"afficherAliments.php",
                 method: "POST",
                 dataType : "json",
                 data : envoi,
-                /*succes: function(data, statut){
-                    console.log(data);
-                $.each(data, function(i, a){
-                    console.log(a.nom);
-                    $("#inputAliment1" ).append('<option value='+a.nom+'>'+a.nom+'</option>')
-                    //$("#inputType" ).append('<option value='+a.type+'>'+a.type+'</option>')
-                    });
-                }*/
             }).always(function(response){
-                //console.log(response);
-                //let data = JSON.stringify(response);
                 console.log(response);
                 data=response;
-                console.log(data);
-                console.log(data[1]);
+                selAliment=response;
                 $.each(data, function(i, a){
-                    console.log(a.nom);
-                    $("#inputAliment1" ).append('<option value='+a.nom+'>'+a.nom+'</option>')
-                    //$("#inputType" ).append('<option value='+a.type+'>'+a.type+'</option>')
+                    $("#inputAliment"+id+"" ).append('<option value='+a.nom+'>'+a.nom+'</option>')
                     });
                 });
         }
@@ -164,16 +139,21 @@
             $("<div class='form-recherche'><label for='searchTypeAliment' class='col'>Type d'aliment n°"
             +indicealiment+"</label><select id='typeSelectionAliment"
             +indicealiment+"' name='typeSelectionAliment"
-            +indicealiment+"'><option value='tout'>Tout afficher</option><select></div></div><div class='form-group row'><label for='inputAliment'"
-            +indicealiment+" class='col-sm-2 col-form-label'>Aliment consommé n°"
-            +indicealiment+"</label><div class='col-sm-3'><input type='text' class='form-control' id='inputAliment"
-            +indicealiment+"' ></div></div><div class='form-group row'><label for='inputQuantite"
+            +indicealiment+"'><option value='tout'>Tout afficher</option><select></div></div><div class='form-group row'><span class='col-sm-2'></span><div class='col-sm-2' ><button onclick='selectTypeAliment("
+            +indicealiment+");' class='btn btn-primary form-control'>Valider votre selection de type</button></div></div><div class='form-group row'><label for='searchAliment' class='col'>Aliment consommé n°"
+            +indicealiment+"</label><select id='inputAliment"
+            +indicealiment+"' name='inputAliment1"
+            +indicealiment+"'><select><div class='col-sm-3'></div></div><div class='form-group row'><label for='inputQuantite"
             +indicealiment+"' class='col-sm-2 col-form-label'>Quantite n°"
             +indicealiment+"</label><div class='col-sm-3'><input type='text' class='form-control' id='inputQuantite"
             +indicealiment+"' ></div>").appendTo("#quantite");
             $.each(types, function(i, a){
                 $("#typeSelectionAliment"+indicealiment+"").append('<option value='+a.type+'>'+a.type+'</option>');
             });
+            $.each(selAliment, function(i, a){
+                    $("#inputAliment"+indicealiment+"" ).append('<option value='+a.nom+'>'+a.nom+'</option>')
+                    });
+
         }
 
         function ajoutJournal(){
@@ -196,16 +176,19 @@
             record.quantites=quantites;
             record.nbaliment=indicealiment;
             ajouteHistorique(record);
-            /*setTimeout(execut(), 30000);
-            function execut() {
-                ajouteComporepas(record);
-                }*/
-            for (let j = 1; j <= 1000000000; j++) {
+            //setTimeout(ajouteComporepas(record), 2000);
+            /*for (let j = 1; j <= 1000000000; j++) {
                 timer=timer+1;
-                timer=timer%2;
             }
-            ajouteComporepas(record);
-            timer=0;
+            console.log(timer);
+            if (timer>999999998){
+                for (let k = 0; k < indicealiment; k++){
+                record.indiceEnCours=k;
+                
+                }
+                timer=0;
+             
+            }*/
         }
 
         function ajouteHistorique(newRecord){
@@ -218,6 +201,7 @@
             }).always(function(response){
                 //let data = JSON.stringify(response);
                 console.log(response);
+                ajouteComporepas(newRecord);
                 });
         }
 

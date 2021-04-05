@@ -1,13 +1,6 @@
 <?php
     require_once("config.php");
     
-    /*if(isset($_GET['typeSel'])){
-        $a=$_GET['typeSel'];
-    }
-    else{
-        $a="sandwichs";
-    }*/
-
     $a=$_POST['typeA'];
     //echo $a;
 
@@ -16,7 +9,7 @@
         $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
 
-        $infosAliments = $dbco->prepare("SELECT nom FROM ALIMENTS2 WHERE type='".$a."'");
+        $infosAliments = $dbco->prepare("SELECT * FROM ALIMENTS2 WHERE type='".$a."'");
         $infosAliments->execute();
         
 

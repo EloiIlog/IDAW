@@ -1,4 +1,5 @@
 <?php
+
 addComporepas();
 
     function addComporepas(){
@@ -11,16 +12,16 @@ addComporepas();
         }
     $aliments=$_POST['aliments'];
     $quantites=$_POST['quantites'];
-    $insert='';
+    //$insert='';
     for ($i=0; $i<$_POST['nbaliment']; $i++){
-        $insert="INSERT INTO comporepas ( IdRepas,IdAliment, quantite)
-        VALUES ((SELECT IdRepas 
-        FROM historique 
-        WHERE date='".$_POST['date']."' AND heure='".$_POST['time']."'), 
+        $insert="INSERT INTO comporepas ( IdRepas,IdAliment, quantite, heure, date)
+        VALUES (NULL, 
         (SELECT IdAliment FROM aliments2
-        WHERE nom='".$aliments[$i]."'), '".$quantites[$i]."');";
+        WHERE nom='".$aliments[$i]."'), '".$quantites[$i]."', '".$_POST['time']."', '".$_POST['date']."');";
         mysqli_query($conn,$insert);
-        echo "comporepas  : :".$i.":::".$insert;
+        echo $insert;
+        //}
+        
         }
         mysqli_close($conn);
     }
